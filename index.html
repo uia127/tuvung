@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="vi" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT English Vocabulary Master - English for IT</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            bg: '#0a0e17',
+                            card: '#131b2e',
+                            border: '#1e293b',
+                            accent: '#00f2fe',
+                            blue: '#4facfe',
+                            purple: '#7f00ff',
+                            neonPink: '#ff007f',
+                            neonGreen: '#00ff66'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0a0e17;
+            color: #f1f5f9;
+            font-family: 'Inter', sans-serif;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(0, 242, 254, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(127, 0, 255, 0.05) 0%, transparent 40%);
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0e17;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00f2fe;
+        }
+
+        /* Glow Effects */
+        .glow-accent {
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
+        }
+        .glow-purple {
+            box-shadow: 0 0 15px rgba(127, 0, 255, 0.3);
+        }
+        .text-glow {
+            text-shadow: 0 0 8px rgba(0, 242, 254, 0.6);
+        }
+
+        /* 3D Flip Card Effect */
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+        .transform-style-3d {
+            transform-style: preserve-3d;
+        }
+        .backface-hidden {
+            backface-visibility: hidden;
+        }
+        .rotate-y-180 {
+            transform: rotateY(180deg);
+        }
+
+        /* Pulse Animation */
+        @keyframes cyber-pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+        .animate-cyber-pulse {
+            animation: cyber-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-cyan-500 selection:text-black">
+
+    <!-- TOP NAVBAR -->
+    <header class="border-b border-cyber-border bg-cyber-bg/80 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('dashboard')">
+                <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-400 to-purple-600 flex items-center justify-center text-black font-extrabold text-xl shadow-lg glow-accent">
+                    <i class="fa-solid font-mono text-slate-900">&lt;/&gt;</i>
+                </div>
+                <div>
+                    <span class="font-extrabold text-lg sm:text-xl tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-500">
+                        IT VOCAB MASTER
+                    </span>
+                    <span class="hidden sm:inline-block text-xs text-slate-400 block font-mono">English for Information Technology</span>
+                </div>
+            </div>
+
+            <!-- Global Stats / Nav Options -->
+            <div class="flex items-center space-x-4 sm:space-x-6">
+                <div class="flex items-center space-x-2 bg-slate-900/80 border border-slate-800 px-3 py-1.5 rounded-full" title="Kinh nghiệm (XP)">
+                    <i class="fa-solid fa-bolt text-yellow-400"></i>
+                    <span id="global-xp" class="font-mono text-sm font-bold text-yellow-400">0 XP</span>
+                </div>
+                <div class="flex items-center space-x-2 bg-slate-900/80 border border-slate-800 px-3 py-1.5 rounded-full" title="Chuỗi ngày học">
+                    <i class="fa-solid fa-fire text-orange-500"></i>
+                    <span id="global-streak" class="font-mono text-sm font-bold text-orange-400">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-grow w-full">
+
+        <!-- NAVIGATION TABS -->
+        <nav class="flex flex-wrap gap-2 mb-8 border-b border-slate-800 pb-4 justify-center sm:justify-start">
+            <button onclick="switchTab('dashboard')" id="tab-dashboard" class="tab-btn px-4 py-2.5 rounded-xl font-medium text-sm transition-all duration-200 flex items-center space-x-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-black font-semibold shadow-lg glow-accent">
+                <i class="fa-solid fa-book-open"></i>
+                <span>Danh mục từ vựng</span>
+            </button>
+            <button onclick="switchTab('flashcard')" id="tab-flashcard" class="tab-btn px-4 py-2.5 rounded-xl font-medium text-sm text-slate-400 hover:text-white hover:bg-slate-800/60 transition-all duration-200 flex items-center space-x-2 border border-transparent">
+                <i class="fa-solid fa-clone"></i>
+                <span>Flashcard</span>
+            </button>
+            <button onclick="switchTab('quiz')" id="tab-quiz" class="tab-btn px-4 py-2.5 rounded-xl font-medium text-sm text-slate-400 hover:text-white hover:bg-slate-800/60 transition-all duration-200 flex items-center space-x-2 border border-transparent">
+                <i class="fa-solid fa-gamepad"></i>
+                <span>Trắc nghiệm Quiz</span>
+            </button>
+            <button onclick="switchTab('spelling')" id="tab-spelling" class="tab-btn px-4 py-2.5 rounded-xl font-medium text-sm text-slate-400 hover:text-white hover:bg-slate-800/60 transition-all duration-200 flex items-center space-x-2 border border-transparent">
+                <i class="fa-solid fa-keyboard"></i>
+                <span>Luyện gõ từ</span>
+            </button>
+        </nav>
+
+        <!-- ================= PAGE 1: DASHBOARD & DICTIONARY ================= -->
+        <section id="page-dashboard" class="tab-content space-y-6">
+            <!-- Header Controls & Search -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center bg-cyber-card border border-cyber-border p-4 sm:p-6 rounded-2xl">
+                <!-- Unit Selector -->
+                <div class="md:col-span-4">
+                    <label class="block text-xs font-mono text-cyan-400 mb-2 uppercase tracking-wider">
+                        <i class="fa-solid fa-layer-group mr-1"></i> Chọn Unit Bài Học
+                    </label>
+                    <select id="unit-select" onchange="filterVocabList()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-slate-200 focus:outline-none focus:border-cyan-400 transition-colors font-medium">
+                        <option value="all">Tất cả Unit (200+ Từ vựng)</option>
+                        <option value="1">Unit 1: Working in IT</option>
+                        <option value="2">Unit 2: Computer Systems</option>
+                        <option value="3">Unit 3: Databases</option>
+                        <option value="4">Unit 4: Artificial Intelligence</option>
+                        <option value="5">Unit 5: Network Systems</option>
+                        <option value="6">Unit 6: Communication Systems</option>
+                        <option value="7">Unit 7: Websites</option>
+                        <option value="8">Unit 8: Network Security</option>
+                        <option value="9">Unit 9: The Future of IT</option>
+                    </select>
+                </div>
+
+                <!-- Search Input -->
+                <div class="md:col-span-5">
+                    <label class="block text-xs font-mono text-cyan-400 mb-2 uppercase tracking-wider">
+                        <i class="fa-solid fa-magnifying-glass mr-1"></i> Tìm kiếm nhanh
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="search-input" oninput="filterVocabList()" placeholder="Nhập từ tiếng Anh hoặc nghĩa tiếng Việt..." class="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-2.5 text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition-colors">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-slate-500"></i>
+                    </div>
+                </div>
+
+                <!-- Fast Actions -->
+                <div class="md:col-span-3 flex items-end justify-end space-x-2 pt-2 md:pt-0">
+                    <button onclick="startQuickStudy('flashcard')" class="w-full sm:w-auto px-4 py-2.5 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white rounded-xl text-sm font-semibold transition-all flex items-center justify-center space-x-2 shadow-md">
+                        <i class="fa-solid fa-bolt"></i>
+                        <span>Học Flashcard Unit này</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="flex items-center justify-between text-sm text-slate-400 font-mono px-2">
+                <div>Hiển thị <span id="vocab-count" class="text-cyan-400 font-bold">0</span> từ vựng</div>
+                <div class="flex space-x-4">
+                    <span class="flex items-center"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block mr-1.5"></span> Đã thuộc: <strong id="stat-mastered" class="text-slate-200 ml-1">0</strong></span>
+                    <span class="flex items-center"><span class="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block mr-1.5"></span> Cần ôn lại: <strong id="stat-review" class="text-slate-200 ml-1">0</strong></span>
+                </div>
+            </div>
+
+            <!-- Vocabulary Cards Grid -->
+            <div id="vocab-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Cards injected dynamically -->
+            </div>
+        </section>
+
+        <!-- ================= PAGE 2: FLASHCARD ================= -->
+        <section id="page-flashcard" class="tab-content hidden space-y-6">
+            <div class="max-w-2xl mx-auto space-y-6">
+                <!-- Top controls -->
+                <div class="flex items-center justify-between bg-cyber-card border border-cyber-border p-4 rounded-xl">
+                    <div class="text-sm font-mono text-slate-300">
+                        Thẻ <span id="fc-current-index" class="text-cyan-400 font-bold">1</span> / <span id="fc-total-count">0</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <label for="fc-unit-filter" class="text-xs text-slate-400 font-mono">Unit:</label>
+                        <select id="fc-unit-filter" onchange="initFlashcards()" class="bg-slate-900 border border-slate-700 text-xs text-slate-300 rounded-lg px-2.5 py-1.5 focus:outline-none">
+                            <option value="all">Tất cả Unit</option>
+                            <option value="1">Unit 1</option>
+                            <option value="2">Unit 2</option>
+                            <option value="3">Unit 3</option>
+                            <option value="4">Unit 4</option>
+                            <option value="5">Unit 5</option>
+                            <option value="6">Unit 6</option>
+                            <option value="7">Unit 7</option>
+                            <option value="8">Unit 8</option>
+                            <option value="9">Unit 9</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 3D Flashcard -->
+                <div class="perspective-1000 w-full h-80 cursor-pointer group" onclick="flipFlashcard()">
+                    <div id="flashcard-inner" class="relative w-full h-full duration-500 transform-style-3d transition-transform rounded-2xl shadow-2xl">
+                        
+                        <!-- FRONT SIDE -->
+                        <div class="absolute inset-0 w-full h-full bg-cyber-card border-2 border-cyan-500/30 rounded-2xl p-6 flex flex-col justify-between items-center text-center backface-hidden group-hover:border-cyan-400 transition-colors">
+                            <div class="w-full flex justify-between items-center text-xs font-mono text-slate-400">
+                                <span id="fc-front-unit" class="px-2.5 py-1 bg-slate-900 rounded-md border border-slate-800 text-cyan-400">Unit 1</span>
+                                <span class="text-slate-500"><i class="fa-solid fa-rotate mr-1"></i> Chạm để lật mặt sau</span>
+                            </div>
+
+                            <div class="space-y-3">
+                                <h2 id="fc-front-term" class="text-3xl sm:text-4xl font-extrabold text-white tracking-wide text-glow">
+                                    Application
+                                </h2>
+                                <span id="fc-front-type" class="inline-block px-3 py-1 bg-cyan-950/80 border border-cyan-800/50 text-cyan-300 text-xs font-mono rounded-full">
+                                    N
+                                </span>
+                            </div>
+
+                            <button onclick="event.stopPropagation(); speakCurrentFcTerm();" class="p-3 rounded-full bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 transition-all border border-cyan-500/30">
+                                <i class="fa-solid fa-volume-high text-xl"></i>
+                            </button>
+                        </div>
+
+                        <!-- BACK SIDE -->
+                        <div class="absolute inset-0 w-full h-full bg-gradient-to-br from-slate-900 to-indigo-950 border-2 border-purple-500/40 rounded-2xl p-6 flex flex-col justify-between items-center text-center backface-hidden rotate-y-180">
+                            <div class="w-full flex justify-between items-center text-xs font-mono text-purple-300">
+                                <span>NGHĨA TIẾNG VIỆT</span>
+                                <span class="text-slate-500"><i class="fa-solid fa-rotate mr-1"></i> Chạm để lật lại</span>
+                            </div>
+
+                            <div class="space-y-3 my-auto">
+                                <p id="fc-back-meaning" class="text-2xl sm:text-3xl font-bold text-slate-100">
+                                    Ứng dụng
+                                </p>
+                                <p id="fc-back-ex" class="text-sm text-slate-400 italic max-w-md">
+                                    (Chuyên ngành Công nghệ thông tin)
+                                </p>
+                            </div>
+
+                            <div id="fc-back-status" class="text-xs font-mono text-slate-400">
+                                <!-- Status badge -->
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Control Buttons -->
+                <div class="grid grid-cols-4 gap-3">
+                    <button onclick="prevFlashcard()" class="p-3 bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 rounded-xl font-medium transition-all flex items-center justify-center space-x-1">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span class="hidden sm:inline">Trước</span>
+                    </button>
+                    
+                    <button onclick="markFcMastered(false)" class="p-3 bg-amber-950/40 hover:bg-amber-900/60 border border-amber-700/50 text-amber-300 rounded-xl font-medium transition-all text-xs sm:text-sm flex flex-col sm:flex-row items-center justify-center sm:space-x-1">
+                        <i class="fa-solid fa-triangle-exclamation mb-1 sm:mb-0"></i>
+                        <span>Chưa thuộc</span>
+                    </button>
+
+                    <button onclick="markFcMastered(true)" class="p-3 bg-emerald-950/40 hover:bg-emerald-900/60 border border-emerald-700/50 text-emerald-300 rounded-xl font-medium transition-all text-xs sm:text-sm flex flex-col sm:flex-row items-center justify-center sm:space-x-1">
+                        <i class="fa-solid fa-circle-check mb-1 sm:mb-0"></i>
+                        <span>Đã thuộc</span>
+                    </button>
+
+                    <button onclick="nextFlashcard()" class="p-3 bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 rounded-xl font-medium transition-all flex items-center justify-center space-x-1">
+                        <span class="hidden sm:inline">Tiếp</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 3: QUIZ GAME ================= -->
+        <section id="page-quiz" class="tab-content hidden space-y-6">
+            <div class="max-w-2xl mx-auto">
+                <!-- Quiz Setup Panel -->
+                <div id="quiz-setup" class="bg-cyber-card border border-cyber-border p-6 sm:p-8 rounded-2xl space-y-6">
+                    <div class="text-center space-y-2">
+                        <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-2xl mb-2">
+                            <i class="fa-solid fa-gamepad"></i>
+                        </div>
+                        <h2 class="text-2xl font-extrabold text-white">Thử Thách Trắc Nghiệm IT</h2>
+                        <p class="text-slate-400 text-sm">Kiểm tra khả năng phản xạ từ vựng của bạn</p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-mono text-cyan-400 mb-2 uppercase">Chọn Unit ôn tập</label>
+                            <select id="quiz-unit-select" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-slate-200 focus:outline-none focus:border-cyan-400">
+                                <option value="all">Tất cả Unit (200+ từ)</option>
+                                <option value="1">Unit 1: Working in IT</option>
+                                <option value="2">Unit 2: Computer Systems</option>
+                                <option value="3">Unit 3: Databases</option>
+                                <option value="4">Unit 4: Artificial Intelligence</option>
+                                <option value="5">Unit 5: Network Systems</option>
+                                <option value="6">Unit 6: Communication Systems</option>
+                                <option value="7">Unit 7: Websites</option>
+                                <option value="8">Unit 8: Network Security</option>
+                                <option value="9">Unit 9: The Future of IT</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-mono text-cyan-400 mb-2 uppercase">Số lượng câu hỏi</label>
+                            <div class="grid grid-cols-3 gap-3">
+                                <button type="button" onclick="setQuizCount(10)" class="quiz-count-btn p-3 bg-slate-900 border border-slate-700 hover:border-cyan-400 rounded-xl text-slate-200 font-mono text-sm font-semibold transition-all text-center border-cyan-400 bg-cyan-950/30">10 Câu</button>
+                                <button type="button" onclick="setQuizCount(20)" class="quiz-count-btn p-3 bg-slate-900 border border-slate-700 hover:border-cyan-400 rounded-xl text-slate-200 font-mono text-sm font-semibold transition-all text-center">20 Câu</button>
+                                <button type="button" onclick="setQuizCount(30)" class="quiz-count-btn p-3 bg-slate-900 border border-slate-700 hover:border-cyan-400 rounded-xl text-slate-200 font-mono text-sm font-semibold transition-all text-center">30 Câu</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button onclick="startQuiz()" class="w-full py-3.5 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 hover:opacity-95 text-slate-950 font-extrabold rounded-xl transition-all shadow-lg glow-accent text-lg uppercase tracking-wider">
+                        Bắt đầu làm bài
+                    </button>
+                </div>
+
+                <!-- Quiz Game Active Panel -->
+                <div id="quiz-active" class="hidden bg-cyber-card border border-cyber-border p-6 rounded-2xl space-y-6">
+                    <!-- Progress & Score Header -->
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+                        <div class="text-xs font-mono text-slate-400">
+                            Câu <span id="quiz-curr-q" class="text-cyan-400 font-bold text-base">1</span> / <span id="quiz-total-q">10</span>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="text-xs font-mono text-amber-400 flex items-center space-x-1">
+                                <i class="fa-solid fa-fire text-orange-500"></i>
+                                <span>Streak: <strong id="quiz-streak">0</strong></span>
+                            </div>
+                            <div class="text-xs font-mono text-cyan-400 flex items-center space-x-1">
+                                <i class="fa-solid fa-trophy"></i>
+                                <span>Điểm: <strong id="quiz-score">0</strong></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question Container -->
+                    <div class="space-y-3 py-2">
+                        <span id="quiz-type-badge" class="px-2.5 py-1 bg-cyan-950 text-cyan-400 border border-cyan-800 text-xs font-mono rounded-md inline-block">
+                            Chọn nghĩa đúng
+                        </span>
+                        <h3 id="quiz-question-text" class="text-2xl sm:text-3xl font-bold text-white">
+                            Software developer
+                        </h3>
+                    </div>
+
+                    <!-- Answer Options -->
+                    <div id="quiz-options" class="grid grid-cols-1 gap-3">
+                        <!-- Dynamic Options Buttons -->
+                    </div>
+
+                    <!-- Feedback message -->
+                    <div id="quiz-feedback" class="hidden p-4 rounded-xl text-center font-bold text-sm"></div>
+                </div>
+
+                <!-- Quiz Result Panel -->
+                <div id="quiz-result" class="hidden bg-cyber-card border border-cyber-border p-8 rounded-2xl text-center space-y-6">
+                    <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-tr from-cyan-500 to-purple-600 text-slate-950 text-3xl font-extrabold shadow-xl glow-accent">
+                        <i class="fa-solid fa-award"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-extrabold text-white">Hoàn Thành Bài Trắc Nghiệm!</h2>
+                        <p class="text-slate-400 text-sm mt-1">Kết quả luyện tập của bạn</p>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4 py-4">
+                        <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl">
+                            <div class="text-xs font-mono text-slate-400">Số câu đúng</div>
+                            <div id="res-correct" class="text-3xl font-mono font-extrabold text-emerald-400 mt-1">0/0</div>
+                        </div>
+                        <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl">
+                            <div class="text-xs font-mono text-slate-400">Điểm thưởng (XP)</div>
+                            <div id="res-xp" class="text-3xl font-mono font-extrabold text-cyan-400 mt-1">+0 XP</div>
+                        </div>
+                    </div>
+
+                    <button onclick="resetQuiz()" class="w-full py-3.5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:opacity-90 text-slate-950 font-bold rounded-xl transition-all shadow-md">
+                        Thử lại bài khác
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 4: SPELLING PRACTICE ================= -->
+        <section id="page-spelling" class="tab-content hidden space-y-6">
+            <div class="max-w-2xl mx-auto bg-cyber-card border border-cyber-border p-6 sm:p-8 rounded-2xl space-y-6">
+                <!-- Header -->
+                <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+                    <div>
+                        <h2 class="text-xl font-bold text-white flex items-center space-x-2">
+                            <i class="fa-solid fa-keyboard text-cyan-400"></i>
+                            <span>Luyện Gõ Chính Tả</span>
+                        </h2>
+                        <p class="text-xs text-slate-400 mt-0.5">Nhìn nghĩa Tiếng Việt, gõ chính xác từ Tiếng Anh tương ứng</p>
+                    </div>
+                    <select id="spelling-unit-select" onchange="initSpellingSession()" class="bg-slate-900 border border-slate-700 text-xs text-slate-300 rounded-lg px-2.5 py-1.5 focus:outline-none">
+                        <option value="all">Tất cả Unit</option>
+                        <option value="1">Unit 1</option>
+                        <option value="2">Unit 2</option>
+                        <option value="3">Unit 3</option>
+                        <option value="4">Unit 4</option>
+                        <option value="5">Unit 5</option>
+                        <option value="6">Unit 6</option>
+                        <option value="7">Unit 7</option>
+                        <option value="8">Unit 8</option>
+                        <option value="9">Unit 9</option>
+                    </select>
+                </div>
+
+                <!-- Prompt area -->
+                <div class="bg-slate-900/90 border border-slate-800 p-6 rounded-xl text-center space-y-3">
+                    <span id="spell-type" class="px-2.5 py-0.5 bg-cyan-950 border border-cyan-800 text-cyan-400 font-mono text-xs rounded-full">
+                        Cụm danh từ
+                    </span>
+                    <p id="spell-meaning" class="text-2xl sm:text-3xl font-extrabold text-white">
+                        Điện toán đám mây
+                    </p>
+                    <div id="spell-hint-container" class="font-mono text-lg tracking-widest text-slate-500 pt-2">
+                        <!-- Hint underscores like _ _ _ _ _ -->
+                    </div>
+                </div>
+
+                <!-- Input box -->
+                <div class="space-y-3">
+                    <form onsubmit="checkSpelling(event)" class="flex gap-2">
+                        <input type="text" id="spell-input" autocomplete="off" placeholder="Gõ từ tiếng Anh vào đây..." class="flex-grow bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-slate-100 font-mono text-lg focus:outline-none focus:border-cyan-400 transition-colors">
+                        <button type="submit" class="px-6 py-3 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-extrabold rounded-xl transition-all shadow-md">
+                            Gửi
+                        </button>
+                    </form>
+
+                    <!-- Hint & Skip buttons -->
+                    <div class="flex justify-between items-center text-xs">
+                        <button onclick="revealSpellHint()" class="text-cyan-400 hover:text-cyan-300 font-mono flex items-center space-x-1">
+                            <i class="fa-solid fa-lightbulb"></i>
+                            <span>Gợi ý ký tự</span>
+                        </button>
+                        <button onclick="skipSpellWord()" class="text-slate-500 hover:text-slate-400 font-mono">
+                            Bỏ qua từ này <i class="fa-solid fa-forward"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Feedback area -->
+                <div id="spell-feedback" class="hidden p-4 rounded-xl text-center font-bold text-sm"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-800/80 bg-slate-950/50 py-4 mt-8 text-center text-xs font-mono text-slate-500">
+        <div class="max-w-7xl mx-auto px-4">
+            English for Information Technology (IT) • Learning Platform
+        </div>
+    </footer>
+
+    <!-- AUDIO SOUND SYNTHESIS SCRIPT & APPLICATION LOGIC -->
+    <script>
+        // ================= VOCABULARY DATABASE (UNIT 1 -> UNIT 9) =================
+        const rawVocabData = [
+            // Unit 1
+            { id: 1, unit: 1, term: "Application", type: "N", meaning: "Ứng dụng" },
+            { id: 2, unit: 1, term: "Assignment", type: "N", meaning: "Sự giao việc, nhiệm vụ" },
+            { id: 3, unit: 1, term: "Available", type: "ADJ", meaning: "Sẵn có" },
+            { id: 4, unit: 1, term: "Cloud computing", type: "NP", meaning: "Điện toán đám mây" },
+            { id: 5, unit: 1, term: "Code", type: "N, V", meaning: "Mã, tạo mã" },
+            { id: 6, unit: 1, term: "Consulting service", type: "NP", meaning: "Dịch vụ tư vấn" },
+            { id: 7, unit: 1, term: "Customer service", type: "NP", meaning: "Dịch vụ khách hàng" },
+            { id: 8, unit: 1, term: "Data processing", type: "NP", meaning: "Xử lý dữ liệu" },
+            { id: 9, unit: 1, term: "Database", type: "N", meaning: "Cơ sở dữ liệu" },
+            { id: 10, unit: 1, term: "Database administrator", type: "NP", meaning: "Quản lý cơ sở dữ liệu" },
+            { id: 11, unit: 1, term: "Decode", type: "V", meaning: "Giải mã" },
+            { id: 12, unit: 1, term: "Diagnose", type: "V", meaning: "Chẩn đoán, phát hiện lỗi sai" },
+            { id: 13, unit: 1, term: "Employ", type: "V", meaning: "Tuyển dụng" },
+            { id: 14, unit: 1, term: "Employee", type: "N", meaning: "Nhân viên" },
+            { id: 15, unit: 1, term: "Employer", type: "N", meaning: "Nhà tuyển dụng" },
+            { id: 16, unit: 1, term: "Encode", type: "V", meaning: "Mã hoá" },
+            { id: 17, unit: 1, term: "Facilities", type: "N", meaning: "Cơ sở, trang thiết bị" },
+            { id: 18, unit: 1, term: "Firewall", type: "N", meaning: "Tường lửa" },
+            { id: 19, unit: 1, term: "IT department", type: "NP", meaning: "Phòng Công nghệ thông tin" },
+            { id: 20, unit: 1, term: "Launch", type: "V", meaning: "Giới thiệu, tung ra" },
+            { id: 21, unit: 1, term: "Maintain", type: "V", meaning: "Duy trì" },
+            { id: 22, unit: 1, term: "Network administrator", type: "NP", meaning: "Quản trị mạng" },
+            { id: 23, unit: 1, term: "Network architect", type: "NP", meaning: "Kiến trúc sư mạng" },
+            { id: 24, unit: 1, term: "Operating system", type: "NP", meaning: "Hệ điều hành" },
+            { id: 25, unit: 1, term: "Password", type: "N", meaning: "Mật khẩu" },
+            { id: 26, unit: 1, term: "Process", type: "V", meaning: "Xử lý" },
+            { id: 27, unit: 1, term: "Quality assurance", type: "NP", meaning: "Đảm bảo chất lượng" },
+            { id: 28, unit: 1, term: "Software developer", type: "NP", meaning: "Nhân viên phát triển phần mềm" },
+            { id: 29, unit: 1, term: "Support technician", type: "NP", meaning: "Kỹ thuật viên hỗ trợ" },
+            { id: 30, unit: 1, term: "System analyst", type: "NP", meaning: "Nhân viên phân tích hệ thống" },
+            { id: 31, unit: 1, term: "Technical support", type: "NP", meaning: "Hỗ trợ kỹ thuật" },
+            { id: 32, unit: 1, term: "Upgrade", type: "V", meaning: "Nâng cấp" },
+            { id: 33, unit: 1, term: "Username", type: "N", meaning: "Tên người dùng" },
+            { id: 34, unit: 1, term: "Wireless network", type: "NP", meaning: "Mạng không dây" },
+            { id: 35, unit: 1, term: "Workload", type: "N", meaning: "Khối lượng công việc" },
+
+            // Unit 2
+            { id: 36, unit: 2, term: "Access", type: "V, N", meaning: "Truy cập" },
+            { id: 37, unit: 2, term: "Application software", type: "NP", meaning: "Phần mềm ứng dụng" },
+            { id: 38, unit: 2, term: "Assembly", type: "NP", meaning: "Lắp ráp" },
+            { id: 39, unit: 2, term: "Back up", type: "V", meaning: "Sao lưu" },
+            { id: 40, unit: 2, term: "Cache", type: "N", meaning: "Bộ nhớ đệm" },
+            { id: 41, unit: 2, term: "Case", type: "N", meaning: "Vỏ máy tính" },
+            { id: 42, unit: 2, term: "Cooling fan", type: "NP", meaning: "Quạt làm mát" },
+            { id: 43, unit: 2, term: "CPU", type: "N", meaning: "Bộ xử lý trung tâm" },
+            { id: 44, unit: 2, term: "Disk drive", type: "N", meaning: "Ổ đĩa" },
+            { id: 45, unit: 2, term: "Ethernet connector", type: "NP", meaning: "Cổng kết nối Ethernet" },
+            { id: 46, unit: 2, term: "Execute", type: "V", meaning: "Thực hiện, chạy" },
+            { id: 47, unit: 2, term: "Expansion card", type: "NP", meaning: "Thẻ mở rộng" },
+            { id: 48, unit: 2, term: "Hard drive", type: "N", meaning: "Ổ đĩa cứng" },
+            { id: 49, unit: 2, term: "Hardware", type: "N", meaning: "Phần cứng" },
+            { id: 50, unit: 2, term: "Heat sink", type: "N", meaning: "Bộ tản nhiệt" },
+            { id: 51, unit: 2, term: "Motherboard", type: "N", meaning: "Bo mạch chủ" },
+            { id: 52, unit: 2, term: "Peripheral", type: "N", meaning: "Thiết bị ngoại vi" },
+            { id: 53, unit: 2, term: "Power supply", type: "NP", meaning: "Nguồn điện" },
+            { id: 54, unit: 2, term: "Pre-emptive multitasking", type: "NP", meaning: "Đa nhiệm ưu tiên" },
+            { id: 55, unit: 2, term: "RAM", type: "N", meaning: "Bộ nhớ truy xuất ngẫu nhiên" },
+            { id: 56, unit: 2, term: "ROM", type: "N", meaning: "Bộ nhớ chỉ đọc" },
+            { id: 57, unit: 2, term: "Storage device", type: "N", meaning: "Thiết bị lưu trữ" },
+            { id: 58, unit: 2, term: "Utility software", type: "N", meaning: "Phần mềm tiện ích" },
+
+            // Unit 3
+            { id: 59, unit: 3, term: "Accessible", type: "ADJ", meaning: "Có thể truy cập được" },
+            { id: 60, unit: 3, term: "Alphanumeric value", type: "NP", meaning: "Giá trị gồm chữ và số" },
+            { id: 61, unit: 3, term: "Bandwidth", type: "N", meaning: "Băng thông" },
+            { id: 62, unit: 3, term: "Centralized database", type: "NP", meaning: "Cơ sở dữ liệu tập trung" },
+            { id: 63, unit: 3, term: "Cloud database", type: "NP", meaning: "Cơ sở dữ liệu đám mây" },
+            { id: 64, unit: 3, term: "Data coding", type: "NP", meaning: "Mã hóa dữ liệu" },
+            { id: 65, unit: 3, term: "Data entry", type: "NP", meaning: "Nhập liệu" },
+            { id: 66, unit: 3, term: "Data validation", type: "NP", meaning: "Xác thực dữ liệu" },
+            { id: 67, unit: 3, term: "End-user", type: "NP", meaning: "Người dùng cuối" },
+            { id: 68, unit: 3, term: "Integrity", type: "N", meaning: "Tính toàn vẹn" },
+            { id: 69, unit: 3, term: "Object oriented database", type: "NP", meaning: "Cơ sở dữ liệu hướng đối tượng" },
+            { id: 70, unit: 3, term: "Relational database", type: "NP", meaning: "Cơ sở dữ liệu quan hệ" },
+            { id: 71, unit: 3, term: "Structured query language", type: "NP", meaning: "Ngôn ngữ truy vấn có cấu trúc (SQL)" },
+
+            // Unit 4
+            { id: 72, unit: 4, term: "Algorithm", type: "N", meaning: "Thuật toán" },
+            { id: 73, unit: 4, term: "Artificial", type: "ADJ", meaning: "Nhân tạo" },
+            { id: 74, unit: 4, term: "Autonomous transportation", type: "NP", meaning: "Giao thông tự động" },
+            { id: 75, unit: 4, term: "Autocomplete", type: "N", meaning: "Tự động hoàn thành" },
+            { id: 76, unit: 4, term: "Breakthrough", type: "N", meaning: "Đột phá" },
+            { id: 77, unit: 4, term: "Emotional intelligence", type: "NP", meaning: "Trí thông minh cảm xúc" },
+            { id: 78, unit: 4, term: "Facial recognition", type: "N", meaning: "Nhận diện khuôn mặt" },
+            { id: 79, unit: 4, term: "Mimic", type: "V", meaning: "Bắt chước" },
+            { id: 80, unit: 4, term: "Neural networks", type: "NP", meaning: "Mạng thần kinh nhân tạo" },
+            { id: 81, unit: 4, term: "Predictive technologies", type: "NP", meaning: "Công nghệ dự đoán" },
+            { id: 82, unit: 4, term: "Search engine", type: "NP", meaning: "Công cụ tìm kiếm" },
+
+            // Unit 5
+            { id: 83, unit: 5, term: "Access point", type: "NP", meaning: "Điểm truy cập mạng" },
+            { id: 84, unit: 5, term: "Backbone", type: "N", meaning: "Đường trục mạng" },
+            { id: 85, unit: 5, term: "Campus Area Network", type: "NP", meaning: "Mạng khu vực khuôn viên (CAN)" },
+            { id: 86, unit: 5, term: "Communications protocols", type: "NP", meaning: "Giao thức truyền thông" },
+            { id: 87, unit: 5, term: "Gateway", type: "NP", meaning: "Cổng kết nối" },
+            { id: 88, unit: 5, term: "Hubs", type: "N", meaning: "Bộ tập trung (Hub)" },
+            { id: 89, unit: 5, term: "Internet Protocol Suite", type: "NP", meaning: "Bộ giao thức Internet (TCP/IP)" },
+            { id: 90, unit: 5, term: "Metropolitan Area Network", type: "NP", meaning: "Mạng đô thị (MAN)" },
+            { id: 91, unit: 5, term: "Network topologies", type: "NP", meaning: "Cấu trúc liên kết mạng" },
+            { id: 92, unit: 5, term: "Personal Area Network", type: "NP", meaning: "Mạng cá nhân (PAN)" },
+            { id: 93, unit: 5, term: "Router", type: "N", meaning: "Bộ định tuyến (Router)" },
+            { id: 94, unit: 5, term: "Virtual Private Network", type: "NP", meaning: "Mạng riêng ảo (VPN)" },
+
+            // Unit 6
+            { id: 95, unit: 6, term: "Analogue signal", type: "NP", meaning: "Tín hiệu Tương tự (Analog)" },
+            { id: 96, unit: 6, term: "Broadcast", type: "V, N", meaning: "Phát sóng, truyền hình" },
+            { id: 97, unit: 6, term: "Cybernetic organisms", type: "NP", meaning: "Sinh vật điều khiển học" },
+            { id: 98, unit: 6, term: "Digital decoder", type: "NP", meaning: "Bộ giải mã kỹ thuật số" },
+            { id: 99, unit: 6, term: "Instant messaging", type: "N", meaning: "Tin nhắn tức thời" },
+            { id: 100, unit: 6, term: "Telecommunications", type: "NP", meaning: "Viễn thông" },
+
+            // Unit 7
+            { id: 101, unit: 7, term: "Animation", type: "N", meaning: "Hoạt họa, hình ảnh động" },
+            { id: 102, unit: 7, term: "Full-motion video", type: "N", meaning: "Video chuyển động toàn phần" },
+            { id: 103, unit: 7, term: "Hyperlink", type: "N", meaning: "Siêu liên kết" },
+            { id: 104, unit: 7, term: "Meta tag", type: "N", meaning: "Thẻ meta" },
+            { id: 105, unit: 7, term: "Page optimization", type: "NP", meaning: "Tối ưu hóa trang web" },
+            { id: 106, unit: 7, term: "Web editor", type: "NP", meaning: "Trình biên tập trang web" },
+
+            // Unit 8
+            { id: 107, unit: 8, term: "Authentication", type: "N", meaning: "Xác thực" },
+            { id: 108, unit: 8, term: "Broadband connection", type: "NP", meaning: "Kết nối băng thông rộng" },
+            { id: 109, unit: 8, term: "Encryption", type: "N", meaning: "Mã hóa" },
+            { id: 110, unit: 8, term: "Malware", type: "N", meaning: "Phần mềm độc hại" },
+            { id: 111, unit: 8, term: "Secure server", type: "NP", meaning: "Máy chủ bảo mật" },
+            { id: 112, unit: 8, term: "Spyware", type: "N", meaning: "Phần mềm gián điệp" },
+
+            // Unit 9
+            { id: 113, unit: 9, term: "Biometrics", type: "N", meaning: "Sinh trắc học" },
+            { id: 114, unit: 9, term: "Convergence", type: "N", meaning: "Sự hội tụ" },
+            { id: 115, unit: 9, term: "Extraterrestrials", type: "N", meaning: "Sinh vật ngoài trái đất" },
+            { id: 116, unit: 9, term: "Microprocessor", type: "N", meaning: "Bộ vi xử lý" },
+            { id: 117, unit: 9, term: "Nanotechnology", type: "N", meaning: "Công nghệ nano" },
+            { id: 118, unit: 9, term: "Pervasive computing", type: "NP", meaning: "Điện toán diện rộng" },
+            { id: 119, unit: 9, term: "Ubiquitous", type: "ADJ", meaning: "Có mặt ở khắp nơi" }
+        ];
+
+        // Global User Progress State
+        let userProgress = JSON.parse(localStorage.getItem('it_vocab_progress')) || {
+            xp: 0,
+            streak: 1,
+            masteredIds: [],
+            reviewIds: []
+        };
+
+        // Application State
+        let currentFilteredVocab = [...rawVocabData];
+        let fcIndex = 0;
+        let isFcFlipped = false;
+
+        // Quiz State
+        let quizQuestions = [];
+        let quizCurrentIndex = 0;
+        let quizScore = 0;
+        let quizStreak = 0;
+        let quizCountSetting = 10;
+
+        // Spelling State
+        let spellingList = [];
+        let spellingCurrentIndex = 0;
+        let spellingHintIndex = 0;
+
+        // Sound Synthesis
+        function speak(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel(); // Stop current speech
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.9;
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        // INIT APPLICATION
+        window.addEventListener('DOMContentLoaded', () => {
+            updateGlobalStats();
+            filterVocabList();
+            initFlashcards();
+            initSpellingSession();
+        });
+
+        function saveProgress() {
+            localStorage.setItem('it_vocab_progress', JSON.stringify(userProgress));
+            updateGlobalStats();
+        }
+
+        function updateGlobalStats() {
+            document.getElementById('global-xp').innerText = `${userProgress.xp} XP`;
+            document.getElementById('global-streak').innerText = userProgress.streak;
+            
+            document.getElementById('stat-mastered').innerText = userProgress.masteredIds.length;
+            document.getElementById('stat-review').innerText = userProgress.reviewIds.length;
+        }
+
+        function addXP(amount) {
+            userProgress.xp += amount;
+            saveProgress();
+        }
+
+        // TAB NAVIGATION
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(el => {
+                el.classList.remove('bg-gradient-to-r', 'from-cyan-500', 'to-blue-600', 'text-black', 'font-semibold', 'shadow-lg', 'glow-accent');
+                el.classList.add('text-slate-400', 'border-transparent');
+            });
+
+            document.getElementById(`page-${tabId}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`tab-${tabId}`);
+            activeBtn.classList.remove('text-slate-400', 'border-transparent');
+            activeBtn.classList.add('bg-gradient-to-r', 'from-cyan-500', 'to-blue-600', 'text-black', 'font-semibold', 'shadow-lg', 'glow-accent');
+
+            if (tabId === 'flashcard') initFlashcards();
+            if (tabId === 'spelling') initSpellingSession();
+        }
+
+        // ================= DASHBOARD & DICTIONARY LOGIC =================
+        function filterVocabList() {
+            const unitVal = document.getElementById('unit-select').value;
+            const searchVal = document.getElementById('search-input').value.toLowerCase().trim();
+
+            currentFilteredVocab = rawVocabData.filter(item => {
+                const matchUnit = unitVal === 'all' || item.unit == unitVal;
+                const matchSearch = item.term.toLowerCase().includes(searchVal) || item.meaning.toLowerCase().includes(searchVal);
+                return matchUnit && matchSearch;
+            });
+
+            document.getElementById('vocab-count').innerText = currentFilteredVocab.length;
+            renderVocabGrid();
+        }
+
+        function renderVocabGrid() {
+            const grid = document.getElementById('vocab-grid');
+            grid.innerHTML = '';
+
+            if (currentFilteredVocab.length === 0) {
+                grid.innerHTML = `<div class="col-span-full py-12 text-center text-slate-500 font-mono">Không tìm thấy từ vựng phù hợp</div>`;
+                return;
+            }
+
+            currentFilteredVocab.forEach(item => {
+                const isMastered = userProgress.masteredIds.includes(item.id);
+                const card = document.createElement('div');
+                card.className = `bg-cyber-card border ${isMastered ? 'border-emerald-500/30' : 'border-cyber-border'} p-4 rounded-xl flex flex-col justify-between space-y-3 hover:border-cyan-500/50 transition-all`;
+
+                card.innerHTML = `
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <span class="text-[10px] font-mono px-2 py-0.5 bg-slate-900 border border-slate-800 text-cyan-400 rounded">Unit ${item.unit}</span>
+                            <span class="ml-2 text-[10px] font-mono px-2 py-0.5 bg-cyan-950 text-cyan-300 rounded">${item.type}</span>
+                        </div>
+                        <button onclick="speak('${item.term.replace(/'/g, "\\'")}')" class="text-slate-400 hover:text-cyan-400 p-1">
+                            <i class="fa-solid fa-volume-high"></i>
+                        </button>
+                    </div>
+
+                    <div>
+                        <h4 class="text-lg font-extrabold text-white tracking-wide">${item.term}</h4>
+                        <p class="text-sm text-slate-300 mt-1 font-medium">${item.meaning}</p>
+                    </div>
+
+                    <div class="pt-2 border-t border-slate-800/60 flex items-center justify-between text-xs font-mono">
+                        <button onclick="toggleMasterStatus(${item.id})" class="${isMastered ? 'text-emerald-400' : 'text-slate-500 hover:text-slate-300'} flex items-center space-x-1">
+                            <i class="fa-solid ${isMastered ? 'fa-circle-check' : 'fa-circle'}"></i>
+                            <span>${isMastered ? 'Đã thuộc' : 'Đánh dấu đã thuộc'}</span>
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function toggleMasterStatus(id) {
+            if (userProgress.masteredIds.includes(id)) {
+                userProgress.masteredIds = userProgress.masteredIds.filter(i => i !== id);
+            } else {
+                userProgress.masteredIds.push(id);
+                addXP(5);
+            }
+            saveProgress();
+            renderVocabGrid();
+        }
+
+        function startQuickStudy(mode) {
+            const unitVal = document.getElementById('unit-select').value;
+            if (mode === 'flashcard') {
+                document.getElementById('fc-unit-filter').value = unitVal;
+                switchTab('flashcard');
+            }
+        }
+
+        // ================= FLASHCARD LOGIC =================
+        function initFlashcards() {
+            const unitVal = document.getElementById('fc-unit-filter').value;
+            let list = rawVocabData;
+            if (unitVal !== 'all') {
+                list = rawVocabData.filter(i => i.unit == unitVal);
+            }
+
+            currentFcList = list.length > 0 ? list : rawVocabData;
+            fcIndex = 0;
+            renderFlashcard();
+        }
+
+        function renderFlashcard() {
+            if (currentFcList.length === 0) return;
+            const item = currentFcList[fcIndex];
+
+            // Reset flip
+            isFcFlipped = false;
+            document.getElementById('flashcard-inner').classList.remove('rotate-y-180');
+
+            document.getElementById('fc-current-index').innerText = fcIndex + 1;
+            document.getElementById('fc-total-count').innerText = currentFcList.length;
+
+            document.getElementById('fc-front-unit').innerText = `Unit ${item.unit}`;
+            document.getElementById('fc-front-term').innerText = item.term;
+            document.getElementById('fc-front-type').innerText = item.type;
+
+            document.getElementById('fc-back-meaning').innerText = item.meaning;
+
+            const isMastered = userProgress.masteredIds.includes(item.id);
+            document.getElementById('fc-back-status').innerHTML = isMastered 
+                ? `<span class="text-emerald-400"><i class="fa-solid fa-check-circle mr-1"></i>Trạng thái: Đã thuộc</span>`
+                : `<span class="text-amber-400"><i class="fa-solid fa-circle mr-1"></i>Trạng thái: Cần học</span>`;
+        }
+
+        function flipFlashcard() {
+            isFcFlipped = !isFcFlipped;
+            const inner = document.getElementById('flashcard-inner');
+            if (isFcFlipped) {
+                inner.classList.add('rotate-y-180');
+            } else {
+                inner.classList.remove('rotate-y-180');
+            }
+        }
+
+        function speakCurrentFcTerm() {
+            if (currentFcList[fcIndex]) {
+                speak(currentFcList[fcIndex].term);
+            }
+        }
+
+        function nextFlashcard() {
+            if (fcIndex < currentFcList.length - 1) {
+                fcIndex++;
+                renderFlashcard();
+            }
+        }
+
+        function prevFlashcard() {
+            if (fcIndex > 0) {
+                fcIndex--;
+                renderFlashcard();
+            }
+        }
+
+        function markFcMastered(mastered) {
+            const item = currentFcList[fcIndex];
+            if (!item) return;
+
+            if (mastered) {
+                if (!userProgress.masteredIds.includes(item.id)) {
+                    userProgress.masteredIds.push(item.id);
+                    addXP(10);
+                }
+            } else {
+                userProgress.masteredIds = userProgress.masteredIds.filter(i => i !== item.id);
+                if (!userProgress.reviewIds.includes(item.id)) {
+                    userProgress.reviewIds.push(item.id);
+                }
+            }
+            saveProgress();
+            nextFlashcard();
+        }
+
+        // ================= QUIZ GAME LOGIC =================
+        function setQuizCount(count) {
+            quizCountSetting = count;
+            document.querySelectorAll('.quiz-count-btn').forEach(btn => {
+                btn.classList.remove('border-cyan-400', 'bg-cyan-950/30');
+            });
+            event.target.classList.add('border-cyan-400', 'bg-cyan-950/30');
+        }
+
+        function startQuiz() {
+            const unitVal = document.getElementById('quiz-unit-select').value;
+            let available = rawVocabData;
+            if (unitVal !== 'all') {
+                available = rawVocabData.filter(i => i.unit == unitVal);
+            }
+
+            if (available.length < 4) {
+                alert("Unit này không đủ số từ vựng để tạo bài trắc nghiệm (cần tối thiểu 4 từ).");
+                return;
+            }
+
+            // Shuffle and pick questions
+            const shuffled = [...available].sort(() => 0.5 - Math.random());
+            quizQuestions = shuffled.slice(0, Math.min(quizCountSetting, shuffled.length));
+
+            quizCurrentIndex = 0;
+            quizScore = 0;
+            quizStreak = 0;
+
+            document.getElementById('quiz-setup').classList.add('hidden');
+            document.getElementById('quiz-result').classList.add('hidden');
+            document.getElementById('quiz-active').classList.remove('hidden');
+
+            renderQuizQuestion();
+        }
+
+        function renderQuizQuestion() {
+            const q = quizQuestions[quizCurrentIndex];
+            document.getElementById('quiz-curr-q').innerText = quizCurrentIndex + 1;
+            document.getElementById('quiz-total-q').innerText = quizQuestions.length;
+            document.getElementById('quiz-score').innerText = quizScore;
+            document.getElementById('quiz-streak').innerText = quizStreak;
+
+            document.getElementById('quiz-question-text').innerText = q.term;
+            document.getElementById('quiz-type-badge').innerText = `Loại từ: ${q.type}`;
+
+            // Generate options (1 correct + 3 wrong)
+            const wrongOptions = rawVocabData
+                .filter(i => i.id !== q.id)
+                .sort(() => 0.5 - Math.random())
+                .slice(0, 3);
+
+            const allOptions = [q, ...wrongOptions].sort(() => 0.5 - Math.random());
+
+            const optionsContainer = document.getElementById('quiz-options');
+            optionsContainer.innerHTML = '';
+            document.getElementById('quiz-feedback').classList.add('hidden');
+
+            allOptions.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full p-4 bg-slate-900 border border-slate-700 hover:border-cyan-400 hover:bg-slate-800 rounded-xl text-left text-slate-200 font-medium transition-all flex items-center justify-between";
+                btn.onclick = () => handleQuizAnswer(opt.id === q.id, btn, q.meaning);
+                btn.innerHTML = `
+                    <span>${opt.meaning}</span>
+                    <span class="font-mono text-xs text-slate-500">${String.fromCharCode(65 + idx)}</span>
+                `;
+                optionsContainer.appendChild(btn);
+            });
+
+            speak(q.term);
+        }
+
+        function handleQuizAnswer(isCorrect, clickedBtn, correctMeaning) {
+            // Disable all buttons
+            const btns = document.getElementById('quiz-options').children;
+            for (let btn of btns) {
+                btn.disabled = true;
+            }
+
+            const feedback = document.getElementById('quiz-feedback');
+            feedback.classList.remove('hidden', 'bg-emerald-950', 'text-emerald-300', 'bg-rose-950', 'text-rose-300');
+
+            if (isCorrect) {
+                clickedBtn.classList.add('border-emerald-500', 'bg-emerald-950/50', 'text-emerald-300');
+                quizScore += 10 + (quizStreak * 2);
+                quizStreak++;
+                feedback.classList.add('bg-emerald-950/80', 'text-emerald-300', 'border', 'border-emerald-700/50');
+                feedback.innerText = "Chính xác! +10 XP";
+            } else {
+                clickedBtn.classList.add('border-rose-500', 'bg-rose-950/50', 'text-rose-300');
+                quizStreak = 0;
+                feedback.classList.add('bg-rose-950/80', 'text-rose-300', 'border', 'border-rose-700/50');
+                feedback.innerText = `Rất tiếc! Đáp án đúng là: ${correctMeaning}`;
+            }
+
+            setTimeout(() => {
+                quizCurrentIndex++;
+                if (quizCurrentIndex < quizQuestions.length) {
+                    renderQuizQuestion();
+                } else {
+                    finishQuiz();
+                }
+            }, 1400);
+        }
+
+        function finishQuiz() {
+            document.getElementById('quiz-active').classList.add('hidden');
+            document.getElementById('quiz-result').classList.remove('hidden');
+
+            document.getElementById('res-correct').innerText = `${Math.round(quizScore / 10)}/${quizQuestions.length}`;
+            document.getElementById('res-xp').innerText = `+${quizScore} XP`;
+
+            addXP(quizScore);
+        }
+
+        function resetQuiz() {
+            document.getElementById('quiz-result').classList.add('hidden');
+            document.getElementById('quiz-setup').classList.remove('hidden');
+        }
+
+        // ================= SPELLING LOGIC =================
+        function initSpellingSession() {
+            const unitVal = document.getElementById('spelling-unit-select').value;
+            let list = rawVocabData;
+            if (unitVal !== 'all') {
+                list = rawVocabData.filter(i => i.unit == unitVal);
+            }
+
+            spellingList = [...list].sort(() => 0.5 - Math.random());
+            spellingCurrentIndex = 0;
+            renderSpellingWord();
+        }
+
+        function renderSpellingWord() {
+            if (spellingList.length === 0) return;
+
+            const item = spellingList[spellingCurrentIndex];
+            spellingHintIndex = 1;
+
+            document.getElementById('spell-type').innerText = item.type;
+            document.getElementById('spell-meaning').innerText = item.meaning;
+            document.getElementById('spell-input').value = '';
+            document.getElementById('spell-feedback').classList.add('hidden');
+
+            updateSpellHintUI();
+        }
+
+        function updateSpellHintUI() {
+            const item = spellingList[spellingCurrentIndex];
+            if (!item) return;
+
+            let hintStr = "";
+            for (let i = 0; i < item.term.length; i++) {
+                if (item.term[i] === ' ') {
+                    hintStr += "  ";
+                } else if (i < spellingHintIndex) {
+                    hintStr += item.term[i] + " ";
+                } else {
+                    hintStr += "_ ";
+                }
+            }
+            document.getElementById('spell-hint-container').innerText = hintStr;
+        }
+
+        function revealSpellHint() {
+            const item = spellingList[spellingCurrentIndex];
+            if (spellingHintIndex < item.term.length) {
+                spellingHintIndex++;
+                updateSpellHintUI();
+            }
+        }
+
+        function checkSpelling(e) {
+            e.preventDefault();
+            const input = document.getElementById('spell-input').value.trim();
+            const item = spellingList[spellingCurrentIndex];
+
+            const feedback = document.getElementById('spell-feedback');
+            feedback.classList.remove('hidden', 'bg-emerald-950', 'text-emerald-300', 'bg-rose-950', 'text-rose-300');
+
+            if (input.toLowerCase() === item.term.toLowerCase()) {
+                feedback.classList.add('bg-emerald-950/80', 'text-emerald-300', 'border', 'border-emerald-700/50');
+                feedback.innerText = "Chính xác! Rất tốt!";
+                speak(item.term);
+                addXP(15);
+
+                setTimeout(() => {
+                    spellingCurrentIndex = (spellingCurrentIndex + 1) % spellingList.length;
+                    renderSpellingWord();
+                }, 1200);
+            } else {
+                feedback.classList.add('bg-rose-950/80', 'text-rose-300', 'border', 'border-rose-700/50');
+                feedback.innerText = "Chưa chính xác, hãy thử lại hoặc sử dụng gợi ý!";
+            }
+        }
+
+        function skipSpellWord() {
+            spellingCurrentIndex = (spellingCurrentIndex + 1) % spellingList.length;
+            renderSpellingWord();
+        }
+    </script>
+</body>
+</html>
